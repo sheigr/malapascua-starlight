@@ -1,0 +1,44 @@
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="brand" routerLink="/" (click)="menuOpen.set(false)">
+    <strong>Starlight</strong>
+    <span>Malapascua Island</span>
+  </a>
+  <button
+    class="menu-button"
+    type="button"
+    [attr.aria-expanded]="menuOpen()"
+    aria-controls="site-nav"
+    (click)="toggleMenu()">
+    Menu
+  </button>
+  <nav id="site-nav" class="nav" [class.open]="menuOpen()" aria-label="Primary">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/rooms" routerLinkActive="active">Rooms</a>
+    <a routerLink="/island" routerLinkActive="active">Island</a>
+    <a routerLink="/gallery" routerLinkActive="active">Gallery</a>
+    <a routerLink="/guide" routerLinkActive="active">Guide</a>
+    <a routerLink="/contact" routerLinkActive="active">Book</a>
+  </nav>
+  <a class="header-call" [href]="'tel:' + site.phones[0].tel">Call {{ site.phones[0].display }}</a>
+</header>
+<main id="main">
+  <router-outlet />
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <strong>{{ site.name }}</strong>
+      <p>{{ site.address.street }}, {{ site.address.locality }}, {{ site.address.region }} {{ site.address.postalCode }}, {{ site.address.country }}</p>
+    </div>
+    <div>
+      <p><a [href]="'tel:' + site.phones[0].tel">{{ site.phones[0].display }}</a></p>
+      <p><a [href]="'tel:' + site.phones[1].tel">{{ site.phones[1].display }}</a></p>
+    </div>
+    <div>
+      <p><a routerLink="/guide">Guest guide</a></p>
+      <p><a routerLink="/contact">Request a room</a></p>
+      <p>© {{ year }} {{ site.name }}</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,36 @@
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a routerLink="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span>Rooms</span>
+    </nav>
+    <p class="eyebrow">Stay</p>
+    <h1>Rooms for two, and larger rooms for families.</h1>
+    <p class="lede">Rates change with the season and the boat schedule. This site does not publish a nightly price. Ask the resort, and they will confirm the room and the rate before you pay.</p>
+  </div>
+</section>
+
+<section class="band" style="padding-top: 1.5rem">
+  <div class="wrap">
+    <h2>In every room</h2>
+    <ul>
+      @for (feature of shared; track feature) {
+        <li>{{ feature }}</li>
+      }
+    </ul>
+    <p class="note">Sizes and bed layouts below follow the room types listed for the property. The resort confirms the exact room when you book.</p>
+    <div class="card-grid">
+      @for (room of rooms; track room.slug) {
+        <a class="card" [routerLink]="['/rooms', room.slug]">
+          <img [src]="room.image" width="1600" height="900" [alt]="room.imageAlt" loading="lazy">
+          <div>
+            <h3>{{ room.name }}</h3>
+            <p>{{ room.summary }}</p>
+            <p class="meta">{{ room.size }} · {{ room.sleeps }} · {{ room.beds }}</p>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>

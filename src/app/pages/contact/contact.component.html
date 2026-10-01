@@ -1,0 +1,87 @@
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a routerLink="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span>Book</span>
+    </nav>
+    <p class="eyebrow">Direct</p>
+    <h1>Call, or send the dates.</h1>
+    <p class="lede">The resort confirms the room and how to pay. This form does not take a card. If your boat is soon, call.</p>
+  </div>
+</section>
+
+<section class="band" style="padding-top: 1rem">
+  <div class="wrap contact-layout">
+    <aside class="panel">
+      <h2>Malapascua Starlight Resort</h2>
+      <p>{{ site.address.street }}<br>{{ site.address.locality }}, {{ site.address.region }} {{ site.address.postalCode }}<br>{{ site.address.country }}</p>
+      <p><a [href]="'tel:' + site.phones[0].tel">{{ site.phones[0].label }} {{ site.phones[0].display }}</a></p>
+      <p><a [href]="'tel:' + site.phones[1].tel">{{ site.phones[1].label }} {{ site.phones[1].display }}</a></p>
+      <p><a [href]="site.mapLink">Open the island on OpenStreetMap</a></p>
+      <iframe class="map" [src]="mapUrl" title="Map of Malapascua Island" loading="lazy"></iframe>
+    </aside>
+
+    @if (status() === 'sent') {
+      <div class="panel" role="status">
+        <h2>Inquiry saved.</h2>
+        <p>The resort can read it from the booking file on the server. Call {{ site.phones[0].display }} if you need an answer today.</p>
+        <p><a routerLink="/guide">Read the guest guide while you wait.</a></p>
+      </div>
+    } @else {
+      <form class="panel" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        @if (status() === 'error') {
+          <p class="status status-error" role="alert">{{ errorText() }}</p>
+        }
+        <div class="form-grid">
+          <label class="span-2">Name
+            <input formControlName="name" autocomplete="name" required>
+            @if (invalid('name')) { <span class="field-error">Enter your name.</span> }
+          </label>
+          <label>Email
+            <input formControlName="email" type="email" autocomplete="email" required>
+            @if (invalid('email')) { <span class="field-error">Enter a valid email.</span> }
+          </label>
+          <label>Phone
+            <input formControlName="phone" type="tel" autocomplete="tel" required>
+            @if (invalid('phone')) { <span class="field-error">Enter a phone number.</span> }
+          </label>
+          <label>Check-in
+            <input formControlName="checkIn" type="date" required>
+            @if (invalid('checkIn')) { <span class="field-error">Choose a check-in date.</span> }
+          </label>
+          <label>Check-out
+            <input formControlName="checkOut" type="date" required>
+            @if (invalid('checkOut')) { <span class="field-error">Choose a check-out date.</span> }
+          </label>
+          <label>Guests
+            <select formControlName="guests">
+              @for (count of [1, 2, 3, 4, 5, 6, 7, 8]; track count) {
+                <option [ngValue]="count">{{ count }}</option>
+              }
+            </select>
+          </label>
+          <label>Room
+            <select formControlName="room">
+              <option value="not-sure">Not sure yet</option>
+              @for (room of rooms; track room.slug) {
+                <option [value]="room.slug">{{ room.name }}</option>
+              }
+            </select>
+          </label>
+          <label class="span-2">Notes
+            <textarea formControlName="message" maxlength="800" placeholder="Arrival boat, bed setup, or questions."></textarea>
+          </label>
+          <label class="visually-hidden" aria-hidden="true">Website
+            <input formControlName="website" tabindex="-1" autocomplete="off">
+          </label>
+        </div>
+        <p class="actions">
+          <button class="button" type="submit" [disabled]="status() === 'sending'">
+            {{ status() === 'sending' ? 'Sending…' : 'Send inquiry' }}
+          </button>
+        </p>
+      </form>
+    }
+  </div>
+</section>

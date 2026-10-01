@@ -1,0 +1,23 @@
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a routerLink="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span>Gallery</span>
+    </nav>
+    <p class="eyebrow">Scenes</p>
+    <h1>Sand, timber, and garden light.</h1>
+    <p class="lede">These pictures were made for this site to show the feel of a stay: cottages, a room, a terrace, and the beach a short walk away. Ask the resort for current photos of the room they offer you.</p>
+  </div>
+</section>
+
+<section class="band" style="padding-top: 1rem">
+  <div class="wrap gallery-grid">
+    @for (photo of photos; track photo.src) {
+      <figure>
+        <img [src]="photo.src" width="1600" height="900" [alt]="photo.alt" loading="lazy">
+        <figcaption>{{ photo.caption }}</figcaption>
+      </figure>
+    }
+  </div>
+</section>

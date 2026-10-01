@@ -1,0 +1,89 @@
+<section class="hero">
+  <img
+    src="images/hero.jpg"
+    width="1600"
+    height="900"
+    alt="Palm-lined guest cottages at Malapascua Starlight Resort in warm evening light"
+    fetchpriority="high">
+  <div class="hero-copy">
+    <p class="eyebrow">Malapascua Island, Cebu</p>
+    <h1>Budget rooms a short walk from Bounty Beach.</h1>
+    <p>Air-conditioning, a hot shower, and a gated stay in Barangay Logon. The public market is across the gate. Dive shops are a few minutes toward the sand.</p>
+    <div class="hero-actions">
+      <a class="button" routerLink="/contact">Request a room</a>
+      <a class="button button-quiet" [href]="'tel:' + site.phones[0].tel">Call {{ site.phones[0].display }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">Welcome</p>
+    <h2>A practical base for the island.</h2>
+    <p class="lede">Malapascua Starlight Resort is budget accommodation for divers, couples, and families who want a clean room near the beach without staying on the sand itself. Call either number and the resort will confirm what is free for your dates.</p>
+    <div class="facts">
+      <article class="fact">
+        <strong>5–10 min</strong>
+        <p>Walk to Bounty Beach, restaurants, and the dive shops.</p>
+      </article>
+      <article class="fact">
+        <strong>Across the gate</strong>
+        <p>The Malapascua public market is on the other side of the entrance.</p>
+      </article>
+      <article class="fact">
+        <strong>Hot shower</strong>
+        <p>Every room has air-conditioning and a private bathroom.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top: 0">
+  <div class="wrap">
+    <p class="eyebrow">Rooms</p>
+    <h2>Superior rooms, and four larger terraces.</h2>
+    <p class="lede">Every room has tinted windows with privacy drapes, an in-room safe, a private restroom with hot and cold water, and air-conditioning. Super Deluxe rooms add chairs, a sofa or sofa bed, and a large private terrace.</p>
+    <div class="card-grid">
+      @for (room of rooms; track room.slug) {
+        <a class="card" [routerLink]="['/rooms', room.slug]">
+          <img [src]="room.image" width="1600" height="900" [alt]="room.imageAlt" loading="lazy">
+          <div>
+            <h3>{{ room.name }}</h3>
+            <p>{{ room.summary }}</p>
+            <p class="meta">{{ room.sleeps }} · {{ room.beds }}</p>
+          </div>
+        </a>
+      }
+    </div>
+    <p class="actions"><a class="button" routerLink="/rooms">See the rooms</a></p>
+  </div>
+</section>
+
+<section class="band band-ink">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow">The island</p>
+      <h2>Sleep here. Dive with a shop down the path.</h2>
+      <p>Malapascua is known for dawn trips to Monad Shoal, where thresher sharks are often seen. Starlight is not a dive center. It is the gated room you walk back to after the boat, about five minutes from Bounty Beach.</p>
+      <p class="actions"><a class="button" routerLink="/island">Plan the trip</a></p>
+    </div>
+    <img src="images/beach.jpg" width="1600" height="900" alt="Sunrise over a white-sand beach with turquoise shallows" loading="lazy">
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap split">
+    <img src="images/garden.jpg" width="1600" height="900" alt="Garden path between the resort cottages" loading="lazy">
+    <div>
+      <p class="eyebrow">Getting here</p>
+      <h2>Cebu airport, then the boat from Maya.</h2>
+      <ol class="steps">
+        <li>Fly into Mactan-Cebu International Airport.</li>
+        <li>Travel north to Maya Port in Daanbantayan. The road often takes three to four hours.</li>
+        <li>Take a daytime boat to Malapascua, about thirty to forty-five minutes when the sea is calm.</li>
+        <li>Walk to Barangay Logon. The resort gate faces the public market.</li>
+      </ol>
+      <p class="actions"><a class="button button-quiet" routerLink="/guide">Read the guest guide</a></p>
+    </div>
+  </div>
+</section>

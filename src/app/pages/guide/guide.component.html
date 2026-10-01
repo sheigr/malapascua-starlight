@@ -1,0 +1,33 @@
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a routerLink="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span>Guide</span>
+    </nav>
+    <p class="eyebrow">Before you pack</p>
+    <h1>Questions guests ask before the boat.</h1>
+    <p class="lede">Check-in, rooms, breakfast, and the ride from Cebu. For a room on specific dates, <a routerLink="/contact">send an inquiry</a> or call the resort.</p>
+  </div>
+</section>
+
+<section class="band" style="padding-top: 1rem">
+  <div class="wrap">
+    @for (faq of faqs; track faq.question) {
+      <details class="faq">
+        <summary>{{ faq.question }}</summary>
+        <p>{{ faq.answer }}</p>
+      </details>
+    }
+  </div>
+</section>
+
+<section class="band" style="padding-top: 0">
+  <div class="wrap split">
+    <div class="panel">
+      <h2>Around the property</h2>
+      <p>Published listings describe a fully fenced, gated property with a garden, a shared lounge, and a snack bar. Guests also mention laundry, a 24-hour desk, luggage storage, and help with tours. Breakfast, massage, and an airport shuttle show up as paid extras. Wi-Fi is listed for the public areas. Ask which of these are open when you reserve.</p>
+    </div>
+    <img src="images/lounge.jpg" width="1600" height="900" alt="Open-air lounge with wooden tables looking into the garden" loading="lazy">
+  </div>
+</section>

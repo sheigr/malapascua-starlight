@@ -1,0 +1,36 @@
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a routerLink="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a routerLink="/rooms">Rooms</a>
+      <span aria-hidden="true">/</span>
+      <span>{{ room.name }}</span>
+    </nav>
+    <p class="eyebrow">{{ room.sleeps }}</p>
+    <h1>{{ room.name }}</h1>
+    <p class="lede">{{ room.summary }} {{ room.size }}. {{ room.beds }}.</p>
+    <p class="actions">
+      <a class="button" [routerLink]="['/contact']" [queryParams]="{ room: room.slug }">Ask about this room</a>
+      <a class="button button-quiet" routerLink="/rooms">All rooms</a>
+    </p>
+  </div>
+</section>
+
+<section class="band" style="padding-top: 1rem">
+  <div class="wrap split">
+    <img [src]="room.image" width="1600" height="900" [alt]="room.imageAlt">
+    <div>
+      <h2>What this room includes</h2>
+      <ul>
+        @for (feature of shared; track feature) {
+          <li>{{ feature }}</li>
+        }
+        @for (point of room.points; track point) {
+          <li>{{ point }}</li>
+        }
+      </ul>
+      <p class="note">The photograph shows the setting. Ask the resort for a current photo of the room they assign you.</p>
+    </div>
+  </div>
+</section>
